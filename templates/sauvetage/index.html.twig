@@ -1,0 +1,162 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Sauvetage GSM — Réparation iPhone & Samsung{% endblock %}
+
+{% block body %}
+
+{# HERO SECTION #}
+<div class="hero-section text-center py-5">
+    <div class="container">
+        <i class="bi bi-tools" style="font-size: 4rem; color: var(--jaune)"></i>
+        <h1 class="mt-3 fw-bold" style="color: var(--blanc)">
+            Sauvetage GSM
+        </h1>
+        <p class="fs-5 text-white-50">
+            Réparation professionnelle de smartphones — Devis gratuit — Intervention rapide
+        </p>
+        <div class="d-flex gap-3 justify-content-center mt-4">
+            <a href="tel:+33600000000" class="btn btn-primary btn-lg">
+                <i class="bi bi-telephone"></i> Appeler maintenant
+            </a>
+            <a href="#tarifs" class="btn btn-outline-light btn-lg">
+                <i class="bi bi-list-ul"></i> Voir les tarifs
+            </a>
+        </div>
+    </div>
+</div>
+
+{# AVANTAGES #}
+<div class="container py-5">
+    <div class="row text-center mb-5">
+        <div class="col-md-3">
+            <div class="card p-4">
+                <i class="bi bi-clock-history fs-1" style="color: var(--violet)"></i>
+                <h5 class="mt-3" style="color: var(--jaune)">Rapide</h5>
+                <p class="text-muted">Réparation en 30 minutes à 2 heures selon la panne</p>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card p-4">
+                <i class="bi bi-shield-check fs-1" style="color: var(--violet)"></i>
+                <h5 class="mt-3" style="color: var(--jaune)">Garantie</h5>
+                <p class="text-muted">Toutes nos réparations sont garanties 3 mois</p>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card p-4">
+                <i class="bi bi-gem fs-1" style="color: var(--violet)"></i>
+                <h5 class="mt-3" style="color: var(--jaune)">Qualité</h5>
+                <p class="text-muted">Pièces détachées de qualité premium</p>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card p-4">
+                <i class="bi bi-cash-coin fs-1" style="color: var(--violet)"></i>
+                <h5 class="mt-3" style="color: var(--jaune)">Prix juste</h5>
+                <p class="text-muted">Tarifs compétitifs et devis gratuit</p>
+            </div>
+        </div>
+    </div>
+
+    {# TARIFS #}
+    <div id="tarifs">
+        <h2 class="text-center mb-5 fw-bold" style="color: var(--jaune)">
+            <i class="bi bi-tags"></i> Nos Tarifs
+        </h2>
+
+        {% for brand, service in services %}
+        <div class="mb-5">
+            <h3 class="mb-4" style="color: var(--jaune)">
+                <i class="bi {{ service.icon }}"></i> {{ service.nom }}
+            </h3>
+
+            <div class="row">
+                {# ECRANS #}
+                <div class="col-md-6 mb-4">
+                    <div class="card">
+                        <div class="card-header d-flex align-items-center gap-2">
+                            <i class="bi bi-phone fs-4"></i>
+                            <h5 class="mb-0">Remplacement Écran</h5>
+                        </div>
+                        <div class="card-body p-0">
+                            <table class="table table-dark table-hover mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>Modèle</th>
+                                        <th class="text-end">Prix TTC</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for ecran in service.ecrans %}
+                                    <tr>
+                                        <td>{{ ecran.modele }}</td>
+                                        <td class="text-end fw-bold" style="color: var(--jaune)">
+                                            {{ ecran.prix|number_format(2, ',', ' ') }} €
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                {# BATTERIES #}
+                <div class="col-md-6 mb-4">
+                    <div class="card">
+                        <div class="card-header d-flex align-items-center gap-2">
+                            <i class="bi bi-battery-charging fs-4"></i>
+                            <h5 class="mb-0">Remplacement Batterie</h5>
+                        </div>
+                        <div class="card-body p-0">
+                            <table class="table table-dark table-hover mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>Modèle</th>
+                                        <th class="text-end">Prix TTC</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for batterie in service.batteries %}
+                                    <tr>
+                                        <td>{{ batterie.modele }}</td>
+                                        <td class="text-end fw-bold" style="color: var(--jaune)">
+                                            {{ batterie.prix|number_format(2, ',', ' ') }} €
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% if not loop.last %}
+            <hr style="border-color: var(--violet); border-width: 2px" class="my-5">
+        {% endif %}
+        {% endfor %}
+    </div>
+
+    {# CONTACT #}
+    <div class="card mt-5 text-center p-5">
+        <h3 style="color: var(--jaune)">
+            <i class="bi bi-headset"></i> Besoin d'un devis ?
+        </h3>
+        <p class="text-muted fs-5 mt-2">
+            Contactez-nous pour un devis gratuit et sans engagement
+        </p>
+        <div class="d-flex gap-3 justify-content-center mt-3">
+            <a href="tel:+33600000000" class="btn btn-primary btn-lg">
+                <i class="bi bi-telephone"></i> 06 00 00 00 00
+            </a>
+            <a href="mailto:contact@phoneshop.fr" class="btn btn-outline-primary btn-lg">
+                <i class="bi bi-envelope"></i> contact@phoneshop.fr
+            </a>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

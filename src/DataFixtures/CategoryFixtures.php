@@ -1,68 +1,147 @@
 <?php
 
 namespace App\DataFixtures;
+
 use App\Entity\Category;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
- 
+
 class CategoryFixtures extends Fixture
 {
-      
     public function load(ObjectManager $manager): void
     {
         $categories = [
-        ['name' => 'Telephones Portables',         'description' => 'Smartphones et telephones reconditionnés toutes marques'],
-        ['name' => 'Telephones Reconditionnés',     'description' => 'Telephones remis a neuf garantis 12 mois'],
-        ['name' => 'Cables USB-C',                  'description' => 'Cables USB-C charge rapide et transfert de donnees'],
-        ['name' => 'Cables Lightning',              'description' => 'Cables Lightning certifies MFi compatibles Apple'],
-        ['name' => 'Cables Micro-USB',              'description' => 'Cables Micro-USB standard et tresses solides'],
-        ['name' => 'Cables Magnetiques',            'description' => 'Cables magnetiques 3-en-1 charge rapide'],
-        ['name' => 'Chargeurs Secteur',             'description' => 'Chargeurs muraux rapides GaN et standards'],
-        ['name' => 'Chargeurs GaN',                 'description' => 'Chargeurs GaN compacts haute puissance multi-ports'],
-        ['name' => 'Chargeurs Voiture',             'description' => 'Chargeurs allume-cigare USB-C et USB-A'],
-        ['name' => 'Chargeurs Sans Fil',            'description' => 'Chargeurs Qi et MagSafe induction sans fil'],
-        ['name' => 'Stations de Charge',            'description' => 'Stations multi-appareils filaires et sans fil'],
-        ['name' => 'Chargeurs Solaires',            'description' => 'Panneaux solaires portables pour smartphone'],
-        ['name' => 'AirPods Apple',                 'description' => 'AirPods Pro et AirPods toutes generations'],
-        ['name' => 'Ecouteurs Samsung',             'description' => 'Galaxy Buds Pro et Buds FE Samsung'],
-        ['name' => 'Ecouteurs Bluetooth',           'description' => 'Ecouteurs sans fil toutes marques Bluetooth 5.3'],
-        ['name' => 'Ecouteurs Filaires USB-C',      'description' => 'Ecouteurs filaires connecteur USB-C'],
-        ['name' => 'Ecouteurs Filaires Lightning',  'description' => 'Ecouteurs filaires connecteur Lightning Apple'],
-        ['name' => 'Coques iPhone',                 'description' => 'Coques de protection pour tous les modeles iPhone'],
-        ['name' => 'Coques Samsung Galaxy',         'description' => 'Coques de protection pour Galaxy S et A'],
-        ['name' => 'Coques Xiaomi',                 'description' => 'Coques de protection pour Xiaomi et Redmi'],
-        ['name' => 'Coques Huawei',                 'description' => 'Coques de protection pour Huawei et Honor'],
-        ['name' => 'Coques Antichoc',               'description' => 'Coques renforcees protection maximale military grade'],
-        ['name' => 'Coques Portefeuille',           'description' => 'Coques avec porte-cartes et rangements integres'],
-        ['name' => 'Coques Transparentes',          'description' => 'Coques transparentes silicone et rigides'],
-        ['name' => 'Verres Trempes iPhone',         'description' => 'Protection ecran verre trempe pour iPhone'],
-        ['name' => 'Verres Trempes Samsung',        'description' => 'Protection ecran verre trempe pour Galaxy'],
-        ['name' => 'Verres Trempes Xiaomi',         'description' => 'Protection ecran verre trempe pour Xiaomi'],
-        ['name' => 'Protection Camera',             'description' => 'Films et verres protection objectif camera arriere'],
-        ['name' => 'Etuis & Pochettes',             'description' => 'Etuis portefeuille et pochettes de transport'],
-        ['name' => 'Batteries Externes',            'description' => 'Power banks et batteries de secours 10000mAh+'],
-        ['name' => 'Batteries MagSafe',             'description' => 'Batteries externes compatibles MagSafe iPhone'],
-        ['name' => 'Supports Bureau',               'description' => 'Supports de bureau reglables pour smartphone'],
-        ['name' => 'Supports Voiture',              'description' => 'Supports voiture tableau de bord et grille aeration'],
-        ['name' => 'Adaptateurs & Convertisseurs',  'description' => 'Adaptateurs USB-C Lightning jack et HDMI'],
-        ['name' => 'Stylets Tactiles',              'description' => 'Stylets tactiles precision pour smartphone et tablette'],
-        ['name' => 'Haut-parleurs Bluetooth',       'description' => 'Enceintes portables Bluetooth waterproof'],
-        ['name' => 'Montres Connectees',            'description' => 'Smartwatches sport et connectees toutes marques'],
-        ['name' => 'Bracelets Connectes',           'description' => 'Fitness trackers et bracelets sport connectes'],
-        ['name' => 'Accessoires Gaming Mobile',     'description' => 'Manettes triggers et refroidisseurs pour gaming mobile'],
-        ['name' => 'Selfie & Photo Mobile',         'description' => 'Trepied stabilisateur et accessoires photo smartphone'],
-    ];
 
-       foreach($categories as $key=>$data)
-        {
+            // 0
+            ['name' => 'Téléphones neufs', 'description' => 'Smartphones neufs des dernières générations Apple, Samsung, Xiaomi et autres marques.'],
+
+            // 1
+            ['name' => 'Téléphones reconditionnés', 'description' => 'Smartphones reconditionnés testés, vérifiés et garantis à prix réduit.'],
+
+            // 2
+            ['name' => 'Câbles USB-C', 'description' => 'Câbles USB-C pour charge rapide et transfert de données pour smartphones et ordinateurs.'],
+
+            // 3
+            ['name' => 'Câbles Lightning', 'description' => 'Câbles Lightning certifiés pour iPhone, iPad et accessoires Apple.'],
+
+            // 4
+            ['name' => 'Câbles Micro-USB', 'description' => 'Câbles Micro-USB compatibles avec anciens smartphones et accessoires.'],
+
+            // 5
+            ['name' => 'Câbles magnétiques', 'description' => 'Câbles magnétiques pratiques pour une connexion rapide et sans effort.'],
+
+            // 6
+            ['name' => 'Chargeurs secteur', 'description' => 'Chargeurs muraux pour smartphones, tablettes et autres appareils.'],
+
+            // 7
+            ['name' => 'Chargeurs GaN', 'description' => 'Chargeurs GaN puissants, compacts et multi-ports pour tous vos appareils.'],
+
+            // 8
+            ['name' => 'Chargeurs voiture', 'description' => 'Chargeurs pour voiture compatibles allume-cigare pour recharger en déplacement.'],
+
+            // 9
+            ['name' => 'Chargeurs sans fil', 'description' => 'Chargeurs sans fil Qi et MagSafe pour une recharge pratique sans câble.'],
+
+            // 10
+            ['name' => 'Stations de charge', 'description' => 'Stations permettant de charger plusieurs appareils simultanément.'],
+
+            // 11
+            ['name' => 'Chargeurs solaires', 'description' => 'Solutions de recharge solaire pour une utilisation en extérieur.'],
+
+            // 12
+            ['name' => 'AirPods Apple', 'description' => 'Écouteurs sans fil Apple avec réduction de bruit et audio spatial.'],
+
+            // 13
+            ['name' => 'Écouteurs Samsung', 'description' => 'Écouteurs sans fil Samsung Galaxy Buds avec son immersif.'],
+
+            // 14
+            ['name' => 'Écouteurs Bluetooth', 'description' => 'Écouteurs Bluetooth compatibles avec tous les smartphones.'],
+
+            // 15
+            ['name' => 'Écouteurs filaires USB-C', 'description' => 'Écouteurs filaires avec connecteur USB-C pour smartphones récents.'],
+
+            // 16
+            ['name' => 'Écouteurs filaires Lightning', 'description' => 'Écouteurs filaires Apple avec connecteur Lightning.'],
+
+            // 17
+            ['name' => 'Coques iPhone', 'description' => 'Coques de protection pour iPhone : silicone, cuir, antichoc, etc.'],
+
+            // 18
+            ['name' => 'Coques Samsung', 'description' => 'Coques de protection pour smartphones Samsung Galaxy.'],
+
+            // 19
+            ['name' => 'Coques Xiaomi', 'description' => 'Coques adaptées aux smartphones Xiaomi et Redmi.'],
+
+            // 20
+            ['name' => 'Coques Huawei', 'description' => 'Coques de protection pour smartphones Huawei.'],
+
+            // 21
+            ['name' => 'Coques antichoc', 'description' => 'Coques renforcées offrant une protection maximale contre les chocs.'],
+
+            // 22
+            ['name' => 'Coques portefeuille', 'description' => 'Coques avec rangement pour cartes et billets.'],
+
+            // 23
+            ['name' => 'Coques transparentes', 'description' => 'Coques transparentes pour protéger sans cacher le design.'],
+
+            // 24
+            ['name' => 'Verres trempés iPhone', 'description' => 'Protections écran en verre trempé pour iPhone.'],
+
+            // 25
+            ['name' => 'Verres trempés Samsung', 'description' => 'Protections écran pour smartphones Samsung Galaxy.'],
+
+            // 26
+            ['name' => 'Verres trempés Xiaomi', 'description' => 'Protections écran pour smartphones Xiaomi.'],
+
+            // 27
+            ['name' => 'Protection caméra', 'description' => 'Protections pour les objectifs caméra des smartphones.'],
+
+            // 28
+            ['name' => 'Étuis et pochettes', 'description' => 'Étuis et pochettes pour transporter et protéger votre smartphone.'],
+
+            // 29
+            ['name' => 'Batteries externes', 'description' => 'Power banks pour recharger vos appareils en mobilité.'],
+
+            // 30
+            ['name' => 'Batteries MagSafe', 'description' => 'Batteries externes compatibles MagSafe pour iPhone.'],
+
+            // 31
+            ['name' => 'Supports bureau', 'description' => 'Supports pour smartphone à utiliser sur un bureau.'],
+
+            // 32
+            ['name' => 'Supports voiture', 'description' => 'Supports pour fixer votre smartphone en voiture.'],
+
+            // 33
+            ['name' => 'Adaptateurs', 'description' => 'Adaptateurs pour connecter différents types de ports.'],
+
+            // 34
+            ['name' => 'Stylets tactiles', 'description' => 'Stylets pour écrans tactiles précis et confortables.'],
+
+            // 35
+            ['name' => 'Haut-parleurs Bluetooth', 'description' => 'Enceintes Bluetooth portables avec son puissant.'],
+
+            // 36
+            ['name' => 'Montres connectées', 'description' => 'Smartwatches avec suivi santé, sport et notifications.'],
+
+            // 37
+            ['name' => 'Bracelets connectés', 'description' => 'Bracelets fitness pour suivi d’activité et santé.'],
+
+            // 38
+            ['name' => 'Chargeurs solaires outdoor', 'description' => 'Chargeurs solaires conçus pour le camping et les activités extérieures.'],
+
+            // 39
+            ['name' => 'Accessoires gaming mobile', 'description' => 'Accessoires pour améliorer votre expérience de jeu mobile.'],
+        ];
+
+        foreach ($categories as $index => $data) {
             $category = new Category();
             $category->setName($data['name']);
             $category->setDescription($data['description']);
+
             $manager->persist($category);
-            $this->addReference('category_' . $key , $category);
+
+            $this->addReference('category_' . $index, $category);
         }
-         // $product = new Product();
-        // $manager->persist($product);
 
         $manager->flush();
     }

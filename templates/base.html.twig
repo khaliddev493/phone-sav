@@ -1,182 +1,301 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{% block title %}PhoneShop{% endblock %}</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
-    <style>
-        :root {
-            --violet: #6C25BE;
-            --jaune: #FFD700;
-            --bleu: #4361EE;
-            --blanc: #FFFFFF;
-            --dark: #0D0D1A;
-        }
-        body { background-color: var(--dark); color: var(--blanc); }
-        .navbar { background-color: #12122A !important; border-bottom: 2px solid var(--violet); }
-        .navbar-brand { color: var(--jaune) !important; font-size: 1.5rem; }
-        .nav-link { color: var(--blanc) !important; }
-        .nav-link:hover { color: var(--jaune) !important; }
-        .dropdown-menu { background-color: #12122A; border: 1px solid var(--violet); }
-        .dropdown-item { color: var(--blanc) !important; }
-        .dropdown-item:hover { background-color: var(--violet); color: var(--jaune) !important; }
-        .btn-primary { background-color: var(--violet) !important; border-color: var(--violet) !important; color: var(--blanc) !important; }
-        .btn-primary:hover { background-color: var(--bleu) !important; border-color: var(--bleu) !important; }
-        .btn-outline-primary { border-color: var(--violet) !important; color: var(--violet) !important; }
-        .btn-outline-primary:hover { background-color: var(--violet) !important; color: var(--blanc) !important; }
-        .card { background-color: #12122A !important; border: 1px solid var(--violet) !important; color: var(--blanc) !important; }
-        .card-header { background-color: var(--violet) !important; color: var(--blanc) !important; }
-        .text-primary { color: var(--jaune) !important; }
-        .text-muted { color: #aaaacc !important; }
-        .product-img { background: linear-gradient(135deg, var(--violet), var(--bleu)); display: flex; align-items: center; justify-content: center; color: var(--jaune); font-weight: bold; font-size: 14px; text-align: center; padding: 10px; }
-        .hero-section { background: linear-gradient(135deg, #0D0D1A, var(--violet), var(--bleu)); padding: 80px 0; }
-        footer { background-color: #12122A !important; border-top: 2px solid var(--violet); }
-        .list-group-item { background-color: #12122A !important; border-color: var(--violet) !important; color: var(--blanc) !important; }
-        .list-group-item:hover { background-color: var(--violet) !important; }
-        .form-control { background-color: #12122A !important; border-color: var(--violet) !important; color: var(--blanc) !important; }
-        .form-control:focus { border-color: var(--jaune) !important; box-shadow: 0 0 0 0.2rem rgba(255, 215, 0, 0.25) !important; }
-        .form-control::placeholder { color: #aaaacc !important; }
-        .alert-info { background-color: var(--bleu) !important; border-color: var(--bleu) !important; color: var(--blanc) !important; }
-    </style>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>
+			{% block title %}PhoneShop
+			{% endblock %}
+		</title>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+		<style>:root
+		{
+			--violet: #6C25BE;
+			--jaune: #FFD700;
+			--bleu: #4361EE;
+			--blanc: #FFFFFF;
+			--dark: #0D0D1A;
+		}
+		body {
+			background-color: var(--dark);
+			color: var(--blanc);
+		}
+		.navbar {
+			background-color: #12122A !important;
+			border-bottom: 2px solid var(--violet);
+		}
+		.navbar-brand {
+			color: var(--jaune) !important;
+			font-size: 1.5rem;
+		}
+		.nav-link {
+			color: var(--blanc) !important;
+		}
+		.nav-link:hover {
+			color: var(--jaune) !important;
+		}
+		.dropdown-menu {
+			background-color: #12122A;
+			border: 1px solid var(--violet);
+		}
+		.dropdown-item {
+			color: var(--blanc) !important;
+		}
+		.dropdown-item:hover {
+			background-color: var(--violet);
+			color: var(--jaune) !important;
+		}
+		.btn-primary {
+			background-color: var(--violet) !important;
+			border-color: var(--violet) !important;
+			color: var(--blanc) !important;
+		}
+		.btn-primary:hover {
+			background-color: var(--bleu) !important;
+			border-color: var(--bleu) !important;
+		}
+		.btn-outline-primary {
+			border-color: var(--violet) !important;
+			color: var(--violet) !important;
+		}
+		.btn-outline-primary:hover {
+			background-color: var(--violet) !important;
+			color: var(--blanc) !important;
+		}
+		.card {
+			background-color: #12122A !important;
+			border: 1px solid var(--violet) !important;
+			color: var(--blanc) !important;
+		}
+		.card-header {
+			background-color: var(--violet) !important;
+			color: var(--blanc) !important;
+		}
+		.text-primary {
+			color: var(--jaune) !important;
+		}
+		.text-muted {
+			color: #aaaacc !important;
+		}
+		.product-img {
+			background: linear-gradient(135deg, var(--violet), var(--bleu));
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			color: var(--jaune);
+			font-weight: bold;
+			font-size: 14px;
+			text-align: center;
+			padding: 10px;
+		}
+		.hero-section {
+			background: linear-gradient(135deg, #0D0D1A, var(--violet), var(--bleu));
+			padding: 80px 0;
+		}
+		footer {
+			background-color: #12122A !important;
+			border-top: 2px solid var(--violet);
+		}
+		.list-group-item {
+			background-color: #12122A !important;
+			border-color: var(--violet) !important;
+			color: var(--blanc) !important;
+		}
+		.list-group-item:hover {
+			background-color: var(--violet) !important;
+		}
+		.form-control {
+			background-color: #12122A !important;
+			border-color: var(--violet) !important;
+			color: var(--blanc) !important;
+		}
+		.form-control:focus {
+			border-color: var(--jaune) !important;
+			box-shadow: 0 0 0 0.2rem rgba(255, 215, 0, 0.25) !important;
+		}
+		.form-control::placeholder {
+			color: #aaaacc !important;
+		}
+		.alert-info {
+			background-color: var(--bleu) !important;
+			border-color: var(--bleu) !important;
+			color: var(--blanc) !important;
+		}
+	</style>
 </head>
 <body>
 
-{# NAVBAR #}
-<nav class="navbar navbar-expand-lg">
-    <div class="container">
-        <a class="navbar-brand fw-bold fs-4" href="{{ path('app_home') }}">
-            <i class="bi bi-phone-fill"></i> PhoneShop
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav me-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path('app_home') }}">
-                        <i class="bi bi-house"></i> Accueil
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path('app_product_index') }}">
-                        <i class="bi bi-grid"></i> Produits
-                    </a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
-                        <i class="bi bi-list"></i> Catégories
-                    </a>
-                    <ul class="dropdown-menu">
-                        {% for category in all_categories %}
-                        <li>
-                            <a class="dropdown-item" href="{{ path('app_product_index', {'cat': category.id}) }}">
-                                {{ category.name }}
-                            </a>
-                        </li>
-                        {% endfor %}
-                    </ul>
-                </li>
-            </ul>
-            <ul class="navbar-nav ms-auto">
-                {% if is_granted('ROLE_USER') %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('app_cart_show') }}">
-                            <i class="bi bi-cart3"></i> Panier
-                        </a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
-                            <i class="bi bi-person-circle"></i> Mon compte
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-end">
-                            <li>
-                                <a class="dropdown-item" href="{{ path('app_profil') }}">
-                                    <i class="bi bi-person"></i> Mon profil
-                                </a>
-                            </li>
-                            {% if is_granted('ROLE_ADMIN') %}
-                            <li>
-                                <a class="dropdown-item" href="{{ path('admin') }}">
-                                    <i class="bi bi-speedometer2"></i> Dashboard Admin
-                                </a>
-                            </li>
-                            {% endif %}
-                            <li>
-                                <a class="dropdown-item text-danger" href="{{ path('app_logout') }}">
-                                    <i class="bi bi-box-arrow-right"></i> Déconnexion
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                {% else %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('app_login') }}">
-                            <i class="bi bi-box-arrow-in-right"></i> Connexion
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('app_register') }}">
-                            <i class="bi bi-person-plus"></i> Inscription
-                        </a>
-                    </li>
-                {% endif %}
-            </ul>
-        </div>
-    </div>
-</nav>
+	{# NAVBAR #}
+	<nav class="navbar navbar-expand-lg">
+		<div class="container">
+			<a class="navbar-brand fw-bold fs-4" href="{{ path('app_home') }}">
+				<i class="bi bi-phone-fill"></i>
+				PhoneShop
+			</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav me-auto">
+					<li class="nav-item">
+						<a class="nav-link" href="{{ path('app_home') }}">
+							<i class="bi bi-house"></i>
+							Accueil
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{{ path('app_product_index') }}">
+							<i class="bi bi-grid"></i>
+							Produits
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{{ path('app_sauvetage') }}">
+							<i class="bi bi-tools"></i>
+							Sauvetage GSM
+						</a>
+					</li>
 
-{# FLASH MESSAGES #}
-<div class="container mt-3">
-    {% for type, messages in app.flashes %}
-        {% for message in messages %}
-            <div class="alert alert-{{ type }} alert-dismissible fade show">
-                {{ message }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-            </div>
-        {% endfor %}
-    {% endfor %}
-</div>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
+							<i class="bi bi-list"></i>
+							Catégories
+						</a>
+						<ul class="dropdown-menu">
+							{% for category in all_categories %}
+								<li>
+									<a class="dropdown-item" href="{{ path('app_product_index', {'cat': category.id}) }}">
+										{{ category.name }}
+									</a>
+								</li>
+							{% endfor %}
+						</ul>
+					</li>
+				</ul>
+				<ul class="navbar-nav ms-auto">
+					{% if is_granted('ROLE_USER') %}
+						<li class="nav-item">
+							<a class="nav-link" href="{{ path('app_cart_show') }}">
+								<i class="bi bi-cart3"></i>
+								Panier
+							</a>
+						</li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
+								<i class="bi bi-person-circle"></i>
+								Mon compte
+							</a>
+							<ul class="dropdown-menu dropdown-menu-end">
+								<li>
+									<a class="dropdown-item" href="{{ path('app_profil') }}">
+										<i class="bi bi-person"></i>
+										Mon profil
+									</a>
+								</li>
+								{% if is_granted('ROLE_ADMIN') %}
+									<li>
+										<a class="dropdown-item" href="{{ path('admin') }}">
+											<i class="bi bi-speedometer2"></i>
+											Dashboard Admin
+										</a>
+									</li>
+								{% endif %}
+								<li>
+									<a class="dropdown-item text-danger" href="{{ path('app_logout') }}">
+										<i class="bi bi-box-arrow-right"></i>
+										Déconnexion
+									</a>
+								</li>
+							</ul>
+						</li>
+					{% else %}
+						<li class="nav-item">
+							<a class="nav-link" href="{{ path('app_login') }}">
+								<i class="bi bi-box-arrow-in-right"></i>
+								Connexion
+							</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="{{ path('app_register') }}">
+								<i class="bi bi-person-plus"></i>
+								Inscription
+							</a>
+						</li>
+					{% endif %}
+				</ul>
+			</div>
+		</div>
+	</nav>
 
-{# CONTENU #}
-<main>
-    {% block body %}{% endblock %}
-</main>
+	{# FLASH MESSAGES #}
+	<div class="container mt-3">
+		{% for type, messages in app.flashes %}
+			{% for message in messages %}
+				<div class="alert alert-{{ type }} alert-dismissible fade show">
+					{{ message }}
+					<button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+				</div>
+			{% endfor %}
+		{% endfor %}
+	</div>
 
-{# FOOTER #}
-<footer class="text-white mt-5 py-5">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4 mb-4">
-                <h5 class="fw-bold" style="color: var(--jaune)">
-                    <i class="bi bi-phone-fill"></i> PhoneShop
-                </h5>
-                <p class="text-muted">Votre boutique en ligne de smartphones et accessoires.</p>
-            </div>
-            <div class="col-md-4 mb-4">
-                <h5 class="fw-bold" style="color: var(--jaune)">Liens utiles</h5>
-                <ul class="list-unstyled">
-                    <li><a href="{{ path('app_home') }}" class="text-decoration-none text-muted"><i class="bi bi-chevron-right"></i> Accueil</a></li>
-                    <li><a href="{{ path('app_product_index') }}" class="text-decoration-none text-muted"><i class="bi bi-chevron-right"></i> Produits</a></li>
-                    <li><a href="{{ path('app_login') }}" class="text-decoration-none text-muted"><i class="bi bi-chevron-right"></i> Connexion</a></li>
-                </ul>
-            </div>
-            <div class="col-md-4 mb-4">
-                <h5 class="fw-bold" style="color: var(--jaune)">Contact</h5>
-                <ul class="list-unstyled text-muted">
-                    <li><i class="bi bi-envelope"></i> contact@phoneshop.fr</li>
-                    <li><i class="bi bi-telephone"></i> 01 23 45 67 89</li>
-                    <li><i class="bi bi-geo-alt"></i> Paris, France</li>
-                </ul>
-            </div>
-        </div>
-        <hr style="border-color: var(--violet)">
-        <p class="text-center text-muted mb-0">&copy; 2024 PhoneShop — Tous droits réservés</p>
-    </div>
-</footer>
+	{# CONTENU #}
+	<main>
+		{% block body %}{% endblock %}
+	</main>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-{% block javascripts %}{% endblock %}
-</body>
-</html>
+	{# FOOTER #}
+	<footer class="text-white mt-5 py-5">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4 mb-4">
+					<h5 class="fw-bold" style="color: var(--jaune)">
+						<i class="bi bi-phone-fill"></i>
+						PhoneShop
+					</h5>
+					<p class="text-muted">Votre boutique en ligne de smartphones et accessoires.</p>
+				</div>
+				<div class="col-md-4 mb-4">
+					<h5 class="fw-bold" style="color: var(--jaune)">Liens utiles</h5>
+					<ul class="list-unstyled">
+						<li>
+							<a href="{{ path('app_home') }}" class="text-decoration-none text-muted">
+								<i class="bi bi-chevron-right"></i>
+								Accueil</a>
+						</li>
+						<li>
+							<a href="{{ path('app_product_index') }}" class="text-decoration-none text-muted">
+								<i class="bi bi-chevron-right"></i>
+								Produits</a>
+						</li>
+						<li>
+							<a href="{{ path('app_login') }}" class="text-decoration-none text-muted">
+								<i class="bi bi-chevron-right"></i>
+								Connexion</a>
+						</li>
+					</ul>
+				</div>
+				<div class="col-md-4 mb-4">
+					<h5 class="fw-bold" style="color: var(--jaune)">Contact</h5>
+					<ul class="list-unstyled text-muted">
+						<li>
+							<i class="bi bi-envelope"></i>
+							contact@phoneshop.fr</li>
+						<li>
+							<i class="bi bi-telephone"></i>
+							06 00 00 00 00 </li>
+						<li>
+							<i class="bi bi-geo-alt"></i>
+							Paris, France</li>
+					</ul>
+				</div>
+			</div>
+			<hr style="border-color: var(--violet)">
+			<p class="text-center text-muted mb-0">&copy; 2026 PhoneShop — Tous droits réservés</p>
+		</div>
+	</footer>
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+	{% block javascripts %}{% endblock %}
+</body></html>
