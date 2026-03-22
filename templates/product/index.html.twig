@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nos Produits{% endblock %}
+
+{% block body %}
+<div class="container py-5">
+    <div class="row">
+
+        {# SIDEBAR CATEGORIES #}
+        <div class="col-md-3">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white fw-bold">
+                    <i class="bi bi-grid"></i> Catégories
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <a href="{{ path('app_product_index') }}" class="text-decoration-none">
+                            Toutes les catégories
+                        </a>
+                    </li>
+                    {% for category in categories %}
+                    <li class="list-group-item">
+                        <a href="{{ path('app_product_index', {'cat': category.id}) }}"
+                           class="text-decoration-none {% if catId == category.id ~ '' %}fw-bold text-primary{% endif %}">
+                            {{ category.name }}
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+
+        {# LISTE PRODUITS #}
+        <div class="col-md-9">
+
+            <form class="d-flex mb-4" action="{{ path('app_product_index') }}" method="GET">
+                <input class="form-control me-2" type="search" name="q"
+                       value="{{ search }}" placeholder="Rechercher un produit...">
+                <button class="btn btn-primary" type="submit">
+                    <i class="bi bi-search"></i>
+                </button>
+            </form>
+
+            <p class="text-muted">{{ produits|length }} produit(s) trouvé(s)</p>
+
+            {% if produits is empty %}
+                <div class="alert alert-info">Aucun produit trouvé.</div>
+            {% else %}
+                <div class="row g-4">
+                    {% for produit in produits %}
+                    <div class="col-6 col-lg-4">
+                        <div class="card h-100 shadow-sm">
+                            <img src="{{ produit.image ?: 'https://placehold.co/300x200?text=No+Image' }}"
+                                 class="card-img-top p-2"
+                                 alt="{{ produit.name }}"
+                                 style="height:180px; object-fit:contain; background:#f8f8f8;">
+                            <div class="card-body d-flex flex-column">
+                                <h6 class="card-title">{{ produit.name }}</h6>
+                                <p class="text-muted small">{{ produit.brand }}</p>
+                                <p class="text-muted small">{{ produit.category.name }}</p>
+                                <p class="fw-bold text-primary mt-auto">{{ produit.price }} €</p>
+                                <a href="{{ path('app_product_show', {'id': produit.id}) }}"
+                                   class="btn btn-outline-primary btn-sm">
+                                    Voir le produit
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+        </div>
+    </div>
+</div>
+{% endblock %}

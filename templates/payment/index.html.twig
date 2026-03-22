@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Paiement réussi{% endblock %}
+
+{% block body %}
+<div class="container py-5">
+    <div class="text-center">
+
+        <i class="bi bi-check-circle-fill" style="font-size: 6rem; color: var(--jaune)"></i>
+
+        <h1 class="mt-4" style="color: var(--jaune)">
+            Paiement réussi !
+        </h1>
+
+        <p class="text-muted fs-5 mt-3">
+            Merci pour votre achat. Votre commande a été confirmée et est en cours de traitement.
+        </p>
+
+        <div class="card mx-auto mt-4" style="max-width: 500px">
+            <div class="card-body">
+                <p class="mb-2">
+                    <i class="bi bi-envelope"></i>
+                    Un email de confirmation vous sera envoyé.
+                </p>
+                <p class="mb-0">
+                    <i class="bi bi-truck"></i>
+                    Votre commande sera livrée sous 3 à 5 jours ouvrés.
+                </p>
+            </div>
+        </div>
+
+        <div class="d-flex gap-3 justify-content-center mt-4">
+            <a href="{{ path('app_order_list') }}" class="btn btn-primary">
+                <i class="bi bi-list-ul"></i> Mes commandes
+            </a>
+            <a href="{{ path('app_product_index') }}" class="btn btn-outline-primary">
+                <i class="bi bi-arrow-left"></i> Continuer mes achats
+            </a>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,152 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}PhoneShop - Accueil{% endblock %}
+
+{% block body %}
+
+<style>
+:root {
+    --main-purple: #6d28d9;
+    --purple-dark: #5b21b6;
+    --purple-light: #7c3aed;
+}
+
+/* GLOBAL */
+body {
+    background: linear-gradient(135deg, #6d28d9, #7c3aed);
+    color: white;
+}
+
+/* CARDS */
+.card {
+    background-color: var(--purple-dark);
+    color: white;
+    border: none;
+    border-radius: 12px;
+}
+
+.card .text-muted {
+    color: #d1d5db !important;
+}
+
+/* BUTTON */
+.btn-primary {
+    background-color: white;
+    color: var(--main-purple);
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #f3f4f6;
+}
+
+.btn-outline-primary {
+    border-color: white;
+    color: white;
+}
+
+.btn-outline-primary:hover {
+    background-color: white;
+    color: var(--main-purple);
+}
+</style>
+
+{# HERO #}
+<section class="py-5 text-white" style="background-color: var(--main-purple);">
+    <div class="container text-center">
+        <h1 class="display-4 fw-bold">
+            <i class="bi bi-phone"></i> PhoneShop
+        </h1>
+        <p class="lead">Smartphones, accessoires et bien plus encore</p>
+        <a href="{{ path('app_product_index') }}" class="btn btn-primary btn-lg">
+            Voir tous les produits
+        </a>
+    </div>
+</section>
+
+{# CATEGORIES #}
+<section class="py-5" style="background-color: var(--purple-light);">
+    <div class="container">
+        <h2 class="text-center mb-4 text-white">Nos Catégories</h2>
+
+        {% set categoryIcons = {
+            'Telephones Portables':      'bi-phone',
+            'Telephones Reconditionnés': 'bi-phone-flip',
+            'Cables USB-C':              'bi-usb-c',
+            'Cables Lightning':          'bi-lightning-charge-fill',
+            'Cables Micro-USB':          'bi-usb',
+            'Cables Magnetiques':        'bi-magnet-fill',
+            'Chargeurs Secteur':         'bi-plug-fill',
+            'Chargeurs GaN':             'bi-cpu-fill',
+            'Chargeurs Voiture':         'bi-car-front-fill',
+            'Chargeurs Sans Fil':        'bi-broadcast',
+            'Stations de Charge':        'bi-device-hdd-fill',
+            'Coques':                    'bi-shield-fill',
+            'Ecouteurs':                 'bi-headphones',
+            'Batteries':                 'bi-battery-full',
+            'Accessoires':               'bi-bag-fill'
+        } %}
+
+        <div class="row g-3">
+            {% for category in categories|slice(0, 8) %}
+            <div class="col-6 col-md-3">
+                <a href="{{ path('app_product_index', {'cat': category.id}) }}" class="text-decoration-none">
+                    <div class="card h-100 text-center shadow-sm"
+                         style="transition: transform 0.2s;"
+                         onmouseover="this.style.transform='translateY(-4px)'"
+                         onmouseout="this.style.transform='translateY(0)'">
+                        <div class="card-body py-4">
+                            <i class="bi {{ categoryIcons[category.name] ?? 'bi-grid' }} fs-1"
+                               style="color: #f5c518;"></i>
+                            <p class="card-text mt-2 fw-semibold text-white">
+                                {{ category.name }}
+                            </p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{# PRODUITS #}
+<section class="py-5" style="background-color: var(--main-purple);">
+    <div class="container">
+        <h2 class="text-center mb-4">Nouveautés</h2>
+
+        <div class="row g-4">
+            {% for product in products %}
+            <div class="col-6 col-md-3">
+                <div class="card h-100 shadow-sm">
+
+                    <img src="{{ product.image ?: 'https://placehold.co/300x200?text=No+Image' }}"
+                         class="card-img-top p-2"
+                         alt="{{ product.name }}"
+                         style="height:180px; object-fit:contain; background:#ffffff; border-radius:10px;">
+
+                    <div class="card-body d-flex flex-column">
+                        <h6 class="card-title">{{ product.name }}</h6>
+                        <p class="text-muted small">{{ product.brand }}</p>
+                        <p class="fw-bold mt-auto">{{ product.price }} €</p>
+
+                        <a href="{{ path('app_product_show', {'id': product.id}) }}"
+                           class="btn btn-outline-primary btn-sm mt-2">
+                            Voir le produit
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="text-center mt-4">
+            <a href="{{ path('app_product_index') }}" class="btn btn-primary btn-lg">
+                Voir tous les produits
+            </a>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

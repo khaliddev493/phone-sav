@@ -1,0 +1,80 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon Profil{% endblock %}
+
+{% block body %}
+<div class="container mt-4">
+
+    <h1 class="mb-4" style="color: var(--jaune)">
+        <i class="bi bi-person-circle"></i> Mon Profil
+    </h1>
+
+    <div class="row">
+
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5 class="mb-0">
+                        <i class="bi bi-person"></i> Informations personnelles
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <strong>Prénom :</strong> {{ user.firstName }}
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Nom :</strong> {{ user.lastName }}
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Email :</strong> {{ user.email }}
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Téléphone :</strong> {{ user.phone }}
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Adresse :</strong> {{ user.adresse }}
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Membre depuis :</strong> 
+                            {{ user.createdAt|date('d/m/Y') }}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5 class="mb-0">
+                        <i class="bi bi-shield-check"></i> Mon compte
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <strong>Rôle :</strong>
+                            {% if is_granted('ROLE_ADMIN') %}
+                                <span class="badge" style="background-color: var(--violet)">
+                                    Administrateur
+                                </span>
+                            {% else %}
+                                <span class="badge" style="background-color: var(--bleu)">
+                                    Utilisateur
+                                </span>
+                            {% endif %}
+                        </li>
+                    </ul>
+                    <div class="mt-3">
+                        <a href="{{ path('app_logout') }}" class="btn btn-danger w-100">
+                            <i class="bi bi-box-arrow-right"></i> Déconnexion
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

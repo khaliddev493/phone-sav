@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Paiement annulé{% endblock %}
+
+{% block body %}
+<div class="container py-5">
+    <div class="text-center">
+
+        <i class="bi bi-x-circle-fill" style="font-size: 6rem; color: #dc3545"></i>
+
+        <h1 class="mt-4" style="color: #dc3545">
+            Paiement annulé
+        </h1>
+
+        <p class="text-muted fs-5 mt-3">
+            Votre paiement a été annulé. Votre panier est toujours disponible.
+        </p>
+
+        <div class="d-flex gap-3 justify-content-center mt-4">
+            <a href="{{ path('app_cart_show') }}" class="btn btn-primary">
+                <i class="bi bi-cart3"></i> Retour au panier
+            </a>
+            <a href="{{ path('app_product_index') }}" class="btn btn-outline-primary">
+                <i class="bi bi-arrow-left"></i> Continuer mes achats
+            </a>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,136 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon Panier
+{% endblock %}
+
+{% block body %}
+	<div class="container py-5">
+
+		<h2 class="mb-4" style="color: var(--jaune)">
+			<i class="bi bi-cart3"></i>
+			Mon Panier
+		</h2>
+
+		{% if cart.cartItems is empty %}
+
+			<div class="alert alert-info">
+				<i class="bi bi-cart-x"></i>
+				Votre panier est vide.
+				<a href="{{ path('app_product_index') }}" class="alert-link">
+					Voir les produits
+				</a>
+			</div>
+
+		{% else %}
+
+			<div
+				class="row">
+
+				{# LISTE DES ARTICLES #}
+				<div class="col-md-8">
+					{% for item in cart.cartItems %}
+						<div class="card mb-3">
+							<div class="card-body">
+								<div
+									class="row align-items-center">
+
+									{# IMAGE #}
+									<div class="col-md-2 text-center">
+										<div class="product-img rounded" style="height:80px;">
+											<span>{{ item.product.brand }}</span>
+										</div>
+									</div>
+
+									{# NOM ET PRIX #}
+									<div class="col-md-4">
+										<h6 class="mb-1">{{ item.product.name }}</h6>
+										<p class="text-muted small mb-0">{{ item.product.brand }}</p>
+										<p style="color: var(--jaune)" class="fw-bold mb-0">
+											{{ item.product.price }}
+											€
+										</p>
+									</div>
+
+									{# QUANTITE #}
+									<div class="col-md-3 text-center">
+										<div class="d-flex align-items-center justify-content-center gap-2">
+											<a href="{{ path('app_cart_decrease', {'id': item.id}) }}" class="btn btn-sm btn-outline-primary">
+												<i class="bi bi-dash"></i>
+											</a>
+											<span class="badge bg-primary fs-6">{{ item.quantity }}</span>
+											<a href="{{ path('app_cart_increase', {'id': item.id}) }}" class="btn btn-sm btn-outline-primary">
+												<i class="bi bi-plus"></i>
+											</a>
+										</div>
+										<p class="text-muted small mt-1">
+											Sous-total :
+											{{ (item.product.price * item.quantity)|number_format(2, ',', ' ') }}
+											€
+										</p>
+									</div>
+
+									{# SUPPRIMER #}
+									<div class="col-md-3 text-end">
+										<a href="{{ path('app_cart_remove', {'id': item.id}) }}" class="btn btn-danger btn-sm" onclick="return confirm('Supprimer cet article ?')">
+											<i class="bi bi-trash"></i>
+										</a>
+									</div>
+
+								</div>
+							</div>
+						</div>
+					{% endfor %}
+
+					<a href="{{ path('app_cart_clear') }}" class="btn btn-outline-danger" onclick="return confirm('Vider tout le panier ?')">
+						<i class="bi bi-trash"></i>
+						Vider le panier
+					</a>
+				</div>
+
+				{# TOTAL #}
+				<div class="col-md-4">
+					<div class="card">
+						<div class="card-header">
+							<h5 class="mb-0">Récapitulatif</h5>
+						</div>
+						<div class="card-body">
+
+							{% set total = 0 %}
+							{% for item in cart.cartItems %}
+								{% set total = total + (item.product.price * item.quantity) %}
+							{% endfor %}
+
+							<p class="mb-2">
+								Nombre d'articles :
+								<strong>{{ cart.cartItems|length }}</strong>
+							</p>
+							<hr style="border-color: var(--violet)">
+							<h4 style="color: var(--jaune)">
+								Total :
+								{{ total|number_format(2, ',', ' ') }}
+								€
+							</h4>
+
+							<div class="d-grid mt-3">
+								<a href="{{ path('app_payment_checkout') }}" class="btn btn-primary btn-lg">
+									<i class="bi bi-credit-card"></i>
+									Payer avec Stripe
+								</a>
+							</div>
+
+							<div class="d-grid mt-2">
+								<a href="{{ path('app_product_index') }}" class="btn btn-outline-primary">
+									<i class="bi bi-arrow-left"></i>
+									Continuer mes achats
+								</a>
+							</div>
+
+						</div>
+					</div>
+				</div>
+
+			</div>
+		{% endif %}
+
+	</div>
+{% endblock %}

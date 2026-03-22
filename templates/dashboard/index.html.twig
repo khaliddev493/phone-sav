@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon Profil{% endblock %}
+
+{% block body %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+
+            <div class="card shadow-sm">
+                <div class="card-header py-3">
+                    <h4 class="mb-0">
+                        <i class="bi bi-person-circle"></i> Mon Profil
+                    </h4>
+                </div>
+                <div class="card-body p-4">
+
+                    <div class="row mb-3">
+                        <div class="col-md-4 fw-bold" style="color: var(--jaune)">Prénom</div>
+                        <div class="col-md-8">{{ user.firstName }}</div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-4 fw-bold" style="color: var(--jaune)">Nom</div>
+                        <div class="col-md-8">{{ user.lastName }}</div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-4 fw-bold" style="color: var(--jaune)">Email</div>
+                        <div class="col-md-8">{{ user.email }}</div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-4 fw-bold" style="color: var(--jaune)">Adresse</div>
+                        <div class="col-md-8">{{ user.adresse }}</div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-4 fw-bold" style="color: var(--jaune)">Téléphone</div>
+                        <div class="col-md-8">{{ user.phone }}</div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-4 fw-bold" style="color: var(--jaune)">Membre depuis</div>
+                        <div class="col-md-8">{{ user.createdAt|date('d/m/Y') }}</div>
+                    </div>
+
+                    <hr style="border-color: var(--violet)">
+
+                    <div class="d-flex gap-3">
+                        <a href="{{ path('app_product_index') }}" class="btn btn-primary">
+                            <i class="bi bi-grid"></i> Voir les produits
+                        </a>
+                        <a href="{{ path('app_logout') }}" class="btn btn-danger">
+                            <i class="bi bi-box-arrow-right"></i> Déconnexion
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}
