@@ -1,44 +1,64 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ produit.name }}{% endblock %}
+{% block title %}{{ product.name }}{% endblock %}
 
 {% block body %}
 <div class="container py-5">
 
-    <a href="{{ path('app_product_index') }}" class="btn btn-outline-secondary mb-4">
-        <i class="bi bi-arrow-left"></i> Retour aux produits
-    </a>
+    <nav aria-label="breadcrumb" class="mb-4">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="{{ path('app_home') }}">Accueil</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a href="{{ path('app_product_index') }}">Produits</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a href="{{ path('app_product_index', {'cat': product.category.id}) }}">
+                    {{ product.category.name }}
+                </a>
+            </li>
+            <li class="breadcrumb-item active">{{ product.name }}</li>
+        </ol>
+    </nav>
 
-    <div class="row">
+    <div class="row g-5">
 
+        {# IMAGE #}
         <div class="col-md-5 text-center">
-            <div class="product-img rounded" style="height:400px; width:100%;">
-                <span style="font-size:24px;">{{ produit.brand }}</span>
-            </div>
+            <img src="{{ asset(product.image ? 'images/produits/' ~ product.image : 'images/produits/default.jpg') }}"
+                 alt="{{ product.name }}"
+                 class="img-fluid rounded shadow"
+                 style="max-height:400px; object-fit:contain; background:#fff;">
         </div>
 
+        {# INFOS #}
         <div class="col-md-7">
-            <h1 class="fw-bold">{{ produit.name }}</h1>
-            <p class="text-muted">Marque : <strong>{{ produit.brand }}</strong></p>
-            <p class="text-muted">Catégorie : <strong>{{ produit.category.name }}</strong></p>
-            <p class="text-muted">{{ produit.description }}</p>
-            <h2 style="color: var(--jaune)" class="fw-bold my-3">{{ produit.price }} €</h2>
+            <p class="text-muted mb-1">{{ product.brand }}</p>
+            <h1 class="h2 fw-bold mb-2">{{ product.name }}</h1>
+            <p class="text-muted small mb-3">Catégorie : {{ product.category.name }}</p>
 
-            {% if produit.stock > 0 %}
-                <p class="text-success">
-                    <i class="bi bi-check-circle"></i> En stock ({{ produit.stock }} disponibles)
-                </p>
-            {% else %}
-                <p class="text-danger">
-                    <i class="bi bi-x-circle"></i> Rupture de stock
-                </p>
-            {% endif %}
+            <p class="fs-2 fw-bold text-primary mb-4">{{ product.price }} €</p>
 
-            <a href="{{ path('app_cart_add', {'id': produit.id}) }}" class="btn btn-primary btn-lg mt-3">
-                <i class="bi bi-cart-plus"></i> Ajouter au panier
-            </a>
-        </div>
+            <p class="mb-4">{{ product.description }}</p>
 
-    </div>
-</div>
+            <div class="d-flex gap-2 mt-3">
+
+                {% if product.stock > 0 %}
+                    <a href="{{ path('app_cart_add', {'id': product.id}) }}"
+                       class="btn btn-primary btn-lg">
+                        <i class="bi bi-cart-plus"></i> Ajouter au panier
+                    </a>
+                {% endif %}
+
+                <a href="{{ path('app_product_index', {'cat': product.category.id}) }}"
+                   class="btn btn-outline-secondary">
+                    <i class="bi bi-arrow-left"></i> Retour à la catégorie
+                </a>
+
+            </div>{# fin d-flex #}
+        </div>{# fin col-md-7 #}
+    </div>{# fin row #}
+</div>{# fin container #}
+
 {% endblock %}

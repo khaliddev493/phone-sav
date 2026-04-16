@@ -1,0 +1,349 @@
+/* ===== GLOBAL ===== */
+:root {
+    --main-purple: #6d28d9;
+    --purple-dark: #5b21b6;
+    --purple-light: #7c3aed;
+}
+
+body {
+    background: linear-gradient(135deg, #6d28d9, #7c3aed);
+    color: white;
+}
+
+.card {
+    background-color: var(--purple-dark);
+    color: white;
+    border: none;
+    border-radius: 12px;
+}
+.card .text-muted {
+    color: #d1d5db !important;
+}
+
+.btn-primary {
+    background-color: white;
+    color: var(--main-purple);
+    border: none;
+}
+.btn-primary:hover {
+    background-color: #f3f4f6;
+}
+.btn-outline-primary {
+    border-color: white;
+    color: white;
+}
+.btn-outline-primary:hover {
+    background-color: white;
+    color: var(--main-purple);
+}
+
+/* ===== HERO SLIDER ===== */
+.hero-slider {
+    position: relative;
+    overflow: hidden;
+    height: 330px;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.slide {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 50px;
+    opacity: 0;
+    transform: translateX(60px);
+    transition: opacity 0.8s cubic-bezier(.4,0,.2,1), transform 0.8s cubic-bezier(.4,0,.2,1);
+    pointer-events: none;
+}
+.slide.active {
+    opacity: 1;
+    transform: translateX(0);
+    pointer-events: auto;
+}
+.slide.exit {
+    opacity: 0;
+    transform: translateX(-60px);
+}
+
+/* --- Arrière-plans slides --- */
+.slide-iphone {
+    background: linear-gradient(120deg, #0f0c29, #302b63, #24243e);
+}
+.slide-iphone::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 70% 50%, rgba(120,80,255,0.35) 0%, transparent 65%);
+}
+
+.slide-samsung {
+    background: linear-gradient(120deg, #0a1628, #1a3a5c, #0d2137);
+}
+.slide-samsung::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 30% 50%, rgba(0,120,255,0.3) 0%, transparent 65%);
+}
+
+.slide-repair {
+    background: linear-gradient(120deg, #1a0a00, #3d1a00, #1f0f00);
+}
+.slide-repair::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 65% 50%, rgba(255,120,0,0.3) 0%, transparent 65%);
+}
+
+/* --- Contenu texte --- */
+.slide-content {
+    position: relative;
+    z-index: 2;
+    max-width: 55%;
+}
+
+.badge-flash {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #f5c518;
+    color: #1a0533;
+    font-weight: 700;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+.badge-flash::before { content: '⚡'; }
+.slide-repair .badge-flash {
+    background: #ff6b00;
+    color: white;
+}
+.slide-repair .badge-flash::before { content: '🔧'; }
+
+.slide-brand {
+    font-size: 11px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 2px;
+}
+
+.slide-title {
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 900;
+    line-height: 1.05;
+    color: white;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+}
+.slide-iphone .slide-title { color: #e8ddff; }
+.slide-samsung .slide-title { color: #d0e8ff; }
+.slide-repair  .slide-title { color: #ffe0c0; }
+
+.slide-desc {
+    font-size: 13px;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.6;
+    margin-bottom: 16px;
+}
+
+/* --- Prix --- */
+.price-block {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 20px;
+}
+.price-old {
+    font-size: 15px;
+    color: rgba(255,255,255,0.35);
+    text-decoration: line-through;
+}
+.price-new {
+    font-size: 32px;
+    font-weight: 800;
+    color: #f5c518;
+}
+
+/* --- Promo réparation --- */
+.promo-tag {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: rgba(255,255,255,0.5);
+    text-transform: uppercase;
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 4px 10px;
+    border-radius: 4px;
+}
+.promo-discount {
+    font-size: 28px;
+    font-weight: 900;
+    color: #ff6b00;
+}
+
+/* --- Bouton --- */
+.btn-slide {
+    display: inline-block;
+    background: white;
+    color: #1a0533;
+    font-weight: 700;
+    font-size: 13px;
+    padding: 10px 22px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.2s;
+}
+.btn-slide:hover {
+    background: #f5c518;
+    color: #1a0533;
+    transform: translateY(-2px);
+    text-decoration: none;
+}
+.btn-slide-repair:hover {
+    background: #ff6b00;
+    color: white;
+}
+
+/* --- Image téléphone --- */
+.slide-image {
+    position: relative;
+    z-index: 2;
+    flex-shrink: 0;
+}
+.slide-image img {
+    height: 230px;
+    width: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 15px 30px rgba(0,0,0,0.5));
+    animation: floatPhone 3s ease-in-out infinite;
+}
+@keyframes floatPhone {
+    0%, 100% { transform: translateY(0); }
+    50%       { transform: translateY(-8px); }
+}
+
+/* --- Visuel réparation --- */
+.slide-image-repair {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.repair-visual {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.repair-phone {
+    font-size: 80px;
+    animation: floatPhone 3s ease-in-out infinite;
+    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.4));
+}
+.repair-icons {
+    position: absolute;
+    inset: 0;
+    animation: spinSlow 8s linear infinite;
+}
+.repair-icon {
+    position: absolute;
+    font-size: 24px;
+    background: rgba(255,107,0,0.2);
+    border: 1px solid rgba(255,107,0,0.4);
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.repair-icon:nth-child(1) { top: 0; left: 50%; transform: translateX(-50%); }
+.repair-icon:nth-child(2) { bottom: 10px; left: 10px; }
+.repair-icon:nth-child(3) { bottom: 10px; right: 10px; }
+
+.repair-badge-big {
+    position: absolute;
+    top: 0;
+    right: -10px;
+    background: #ff6b00;
+    color: white;
+    font-size: 22px;
+    font-weight: 900;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(255,107,0,0.5);
+    animation: pulse 1.5s ease-in-out infinite;
+}
+@keyframes spinSlow {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50%       { transform: scale(1.12); }
+}
+
+/* --- Dots navigation --- */
+.slider-dots {
+    position: absolute;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 10;
+}
+.dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.3);
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s;
+}
+.dot.active {
+    background: #f5c518;
+    transform: scale(1.3);
+}
+
+/* --- Barre de progression --- */
+.progress-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: rgba(255,255,255,0.1);
+    z-index: 10;
+}
+.progress-fill {
+    height: 100%;
+    background: #f5c518;
+    width: 0%;
+    transition: width linear;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+    .hero-slider { height: auto; min-height: 280px; }
+    .slide { flex-direction: column; padding: 24px 20px; text-align: center; }
+    .slide-content { max-width: 100%; }
+    .slide-image img { height: 130px; margin-top: 12px; }
+    .repair-visual { width: 130px; height: 130px; margin-top: 12px; }
+    .repair-phone { font-size: 55px; }
+    .price-block { justify-content: center; }
+    .slide-title { font-size: 34px; }
+}
+

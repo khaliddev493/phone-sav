@@ -1,0 +1,140 @@
+/*  VARIABLES */
+:root {
+    --violet: #6C25BE;
+    --jaune:  #FFD700;
+    --bleu:   #4361EE;
+    --blanc:  #FFFFFF;
+    --dark:   #0D0D1A;
+}
+
+/* GLOBAL */
+body {
+    background-color: var(--dark);
+    color: var(--blanc);
+}
+
+/* ===== NAVBAR ===== */
+.navbar {
+    background-color: #12122A !important;
+    border-bottom: 2px solid var(--violet);
+}
+.navbar-brand {
+    color: var(--jaune) !important;
+    font-size: 1.5rem;
+}
+.nav-link {
+    color: var(--blanc) !important;
+}
+.nav-link:hover {
+    color: var(--jaune) !important;
+}
+
+/*  DROPDOWN   */
+.dropdown-menu {
+    background-color: #12122A;
+    border: 1px solid var(--violet);
+}
+.dropdown-item {
+    color: var(--blanc) !important;
+}
+.dropdown-item:hover {
+    background-color: var(--violet);
+    color: var(--jaune) !important;
+}
+
+/*  BOUTONS  */
+.btn-primary {
+    background-color: var(--violet) !important;
+    border-color: var(--violet) !important;
+    color: var(--blanc) !important;
+}
+.btn-primary:hover {
+    background-color: var(--bleu) !important;
+    border-color: var(--bleu) !important;
+}
+.btn-outline-primary {
+    border-color: var(--violet) !important;
+    color: var(--violet) !important;
+}
+.btn-outline-primary:hover {
+    background-color: var(--violet) !important;
+    color: var(--blanc) !important;
+}
+
+/*  CARDS */
+.card {
+    background-color: #12122A !important;
+    border: 1px solid var(--violet) !important;
+    color: var(--blanc) !important;
+}
+.card-header {
+    background-color: var(--violet) !important;
+    color: var(--blanc) !important;
+}
+
+/* ===== TEXTS ===== */
+.text-primary {
+    color: var(--jaune) !important;
+}
+.text-muted {
+    color: #aaaacc !important;
+}
+
+/* ===== PRODUIT IMAGE ===== */
+.product-img {
+    background: linear-gradient(135deg, var(--violet), var(--bleu));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--jaune);
+    font-weight: bold;
+    font-size: 14px;
+    text-align: center;
+    padding: 10px;
+    width: 100%;
+    height: 250px;
+    object-fit: contain;
+}
+
+/* ===== HERO SECTION ===== */
+.hero-section {
+    background: linear-gradient(135deg, #0D0D1A, var(--violet), var(--bleu));
+    padding: 80px 0;
+}
+
+/* ===== FOOTER ===== */
+footer {
+    background-color: #12122A !important;
+    border-top: 2px solid var(--violet);
+}
+
+/* ===== LIST GROUP ===== */
+.list-group-item {
+    background-color: #12122A !important;
+    border-color: var(--violet) !important;
+    color: var(--blanc) !important;
+}
+.list-group-item:hover {
+    background-color: var(--violet) !important;
+}
+
+/* ===== FORMULAIRES ===== */
+.form-control {
+    background-color: #12122A !important;
+    border-color: var(--violet) !important;
+    color: var(--blanc) !important;
+}
+.form-control:focus {
+    border-color: var(--jaune) !important;
+    box-shadow: 0 0 0 0.2rem rgba(255, 215, 0, 0.25) !important;
+}
+.form-control::placeholder {
+    color: #aaaacc !important;
+}
+
+/* ===== ALERTES ===== */
+.alert-info {
+    background-color: var(--bleu) !important;
+    border-color: var(--bleu) !important;
+    color: var(--blanc) !important;
+}

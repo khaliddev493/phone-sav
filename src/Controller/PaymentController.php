@@ -21,7 +21,8 @@ class PaymentController extends AbstractController
     public function __construct(
         private string $stripeSecretKey,
         private string $stripePublicKey,
-    ) {}
+    ) {
+    }
 
     #[Route('/checkout', name: 'app_payment_checkout')]
     public function checkout(EntityManagerInterface $em): Response
@@ -33,9 +34,7 @@ class PaymentController extends AbstractController
             $this->addFlash('danger', 'Votre panier est vide !');
             return $this->redirectToRoute('app_cart_show');
         }
-
         Stripe::setApiKey($this->stripeSecretKey);
-
         // Préparer les articles pour Stripe
         $lineItems = [];
         foreach ($cart->getCartItems() as $item) {
@@ -45,12 +44,11 @@ class PaymentController extends AbstractController
                     'product_data' => [
                         'name' => $item->getProduct()->getName(),
                     ],
-                    'unit_amount' => (int)($item->getProduct()->getPrice() * 100),
+                    'unit_amount' => (int) ($item->getProduct()->getPrice() * 100),
                 ],
                 'quantity' => $item->getQuantity(),
             ];
         }
-
         // Créer la session Stripe
         $session = Session::create([
             'payment_method_types' => ['card'],
@@ -59,7 +57,6 @@ class PaymentController extends AbstractController
             'success_url' => $this->generateUrl('app_payment_success', [], UrlGeneratorInterface::ABSOLUTE_URL),
             'cancel_url' => $this->generateUrl('app_payment_cancel', [], UrlGeneratorInterface::ABSOLUTE_URL),
         ]);
-
         return $this->redirect($session->url);
     }
 
@@ -93,18 +90,14 @@ class PaymentController extends AbstractController
                 $orderItem->setPrice($item->getProduct()->getPrice());
                 $em->persist($orderItem);
             }
-
             // Vider le panier
             foreach ($cart->getCartItems() as $item) {
                 $em->remove($item);
             }
-
             $em->flush();
         }
-
         return $this->render('payment/success.html.twig');
     }
-
     #[Route('/annule', name: 'app_payment_cancel')]
     public function cancel(): Response
     {

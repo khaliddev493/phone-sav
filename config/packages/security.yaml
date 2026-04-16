@@ -27,12 +27,14 @@ security:
             remember_me:
                 secret: '%kernel.secret%'
                 lifetime: 604800
-
+#  config/packages/security.yaml — access_control (écrit manuellement)
     access_control:
         - { path: ^/admin, roles: ROLE_ADMIN }
         - { path: ^/panier, roles: ROLE_USER }
         - { path: ^/commande, roles: ROLE_USER }
         - { path: ^/profil, roles: ROLE_USER }
+# Toutes les autres routes sont publique
+        
 
 when@test:
     security:

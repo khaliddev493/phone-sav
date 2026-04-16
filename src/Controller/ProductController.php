@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Attribute\Route;
 
 final class ProductController extends AbstractController
-{
+{ //src/Controller/ProductController.php
     #[Route('/produits', name: 'app_product_index')]
     public function index(Request $request ,CategoryRepository $categoryRepository , ProductRepository $productRepository): Response
     {
@@ -20,7 +20,6 @@ final class ProductController extends AbstractController
 
          $produits = $productRepository->search($search ,$catId);
          $categories = $categoryRepository->findAll() ;
-
         return $this->render('product/index.html.twig', [
             'produits' => $produits,
             'categories' => $categories,
@@ -28,14 +27,13 @@ final class ProductController extends AbstractController
             'catId' => $catId
         ]);
     }
-
     #[Route('/produits/{id}' ,name: 'app_product_show')]
 
-    public  function show( Product $produit): Response
+    public  function show( Product $product): Response
     {
 
         return $this->render('product/show.html.twig' ,
-        ['produit' => $produit]);
+        ['product' => $product]);
 
     }
 }

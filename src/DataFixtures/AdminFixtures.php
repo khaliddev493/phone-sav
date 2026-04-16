@@ -22,10 +22,8 @@ class AdminFixtures extends Fixture
         $admin->setAdresse('1 rue Admin');
         $admin->setPhone('0600000000');
         $admin->setRoles(['ROLE_ADMIN']);
-
         $hashedPassword = $this->passwordHasher->hashPassword($admin, 'admin123');
         $admin->setPassword($hashedPassword);
-
         $manager->persist($admin);
         $manager->flush();
     }

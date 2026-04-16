@@ -15,7 +15,7 @@ final class HomeController extends AbstractController
 
    {
         $categories = $categoryRepository->findAll();
-        $products = $productRepository->findBy(['isActive' => true] , ['id' => 'DESC'] , 8);
+        $products = $productRepository->findBy(['isActive' => true] , ['id' => 'ASC'] , 8);
 
         return $this->render('home/index.html.twig' , 
         [

@@ -4,61 +4,16 @@
 
 {% block body %}
 
-{# HERO SECTION #}
-<div class="hero-section text-center py-5">
-    <div class="container">
-        <i class="bi bi-tools" style="font-size: 4rem; color: var(--jaune)"></i>
-        <h1 class="mt-3 fw-bold" style="color: var(--blanc)">
-            Sauvetage GSM
-        </h1>
-        <p class="fs-5 text-white-50">
-            Réparation professionnelle de smartphones — Devis gratuit — Intervention rapide
-        </p>
-        <div class="d-flex gap-3 justify-content-center mt-4">
-            <a href="tel:+33600000000" class="btn btn-primary btn-lg">
-                <i class="bi bi-telephone"></i> Appeler maintenant
-            </a>
-            <a href="#tarifs" class="btn btn-outline-light btn-lg">
-                <i class="bi bi-list-ul"></i> Voir les tarifs
-            </a>
-        </div>
-    </div>
+{# TITRE SIMPLE #}
+<div class="text-center py-4">
+    <h1 class="fw-bold" style="color: var(--jaune)">
+        <i class="bi bi-tools"></i> Sauvetage GSM
+    </h1>
 </div>
 
-{# AVANTAGES #}
-<div class="container py-5">
-    <div class="row text-center mb-5">
-        <div class="col-md-3">
-            <div class="card p-4">
-                <i class="bi bi-clock-history fs-1" style="color: var(--violet)"></i>
-                <h5 class="mt-3" style="color: var(--jaune)">Rapide</h5>
-                <p class="text-muted">Réparation en 30 minutes à 2 heures selon la panne</p>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="card p-4">
-                <i class="bi bi-shield-check fs-1" style="color: var(--violet)"></i>
-                <h5 class="mt-3" style="color: var(--jaune)">Garantie</h5>
-                <p class="text-muted">Toutes nos réparations sont garanties 3 mois</p>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="card p-4">
-                <i class="bi bi-gem fs-1" style="color: var(--violet)"></i>
-                <h5 class="mt-3" style="color: var(--jaune)">Qualité</h5>
-                <p class="text-muted">Pièces détachées de qualité premium</p>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="card p-4">
-                <i class="bi bi-cash-coin fs-1" style="color: var(--violet)"></i>
-                <h5 class="mt-3" style="color: var(--jaune)">Prix juste</h5>
-                <p class="text-muted">Tarifs compétitifs et devis gratuit</p>
-            </div>
-        </div>
-    </div>
+<div class="container py-3">
 
-    {# TARIFS #}
+    {# TARIFS EN PREMIER #}
     <div id="tarifs">
         <h2 class="text-center mb-5 fw-bold" style="color: var(--jaune)">
             <i class="bi bi-tags"></i> Nos Tarifs
@@ -137,6 +92,38 @@
             <hr style="border-color: var(--violet); border-width: 2px" class="my-5">
         {% endif %}
         {% endfor %}
+    </div>
+
+    {# AVANTAGES #}
+    <div class="row text-center mb-5 mt-5">
+        <div class="col-md-3">
+            <div class="card p-4">
+                <i class="bi bi-clock-history fs-1" style="color: var(--violet)"></i>
+                <h5 class="mt-3" style="color: var(--jaune)">Rapide</h5>
+                <p class="text-muted">Réparation en 30 minutes à 2 heures selon la panne</p>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card p-4">
+                <i class="bi bi-shield-check fs-1" style="color: var(--violet)"></i>
+                <h5 class="mt-3" style="color: var(--jaune)">Garantie</h5>
+                <p class="text-muted">Toutes nos réparations sont garanties 3 mois</p>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card p-4">
+                <i class="bi bi-gem fs-1" style="color: var(--violet)"></i>
+                <h5 class="mt-3" style="color: var(--jaune)">Qualité</h5>
+                <p class="text-muted">Pièces détachées de qualité premium</p>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card p-4">
+                <i class="bi bi-cash-coin fs-1" style="color: var(--violet)"></i>
+                <h5 class="mt-3" style="color: var(--jaune)">Prix juste</h5>
+                <p class="text-muted">Tarifs compétitifs et devis gratuit</p>
+            </div>
+        </div>
     </div>
 
     {# CONTACT #}

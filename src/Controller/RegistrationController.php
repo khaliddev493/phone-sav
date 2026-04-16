@@ -14,6 +14,7 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class RegistrationController extends AbstractController
 {
+    // RegistrationController.php
     #[Route('/register', name: 'app_register')]
     public function register(
         Request $request,
@@ -45,3 +46,11 @@ class RegistrationController extends AbstractController
         ]);
     }
 }
+
+
+
+
+
+
+
+

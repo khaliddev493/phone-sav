@@ -27,10 +27,8 @@ class CartController extends AbstractController
             $em->persist($cart);
             $em->flush();
         }
-
         return $cart;
     }
-
     #[Route('/', name: 'app_cart_show')]
     public function show(EntityManagerInterface $em): Response
     {
@@ -40,7 +38,6 @@ class CartController extends AbstractController
             'cart' => $cart,
         ]);
     }
-
     #[Route('/ajouter/{id}', name: 'app_cart_add')]
     public function add(int $id, EntityManagerInterface $em): Response
     {

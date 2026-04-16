@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ProductRepository::class)]
 class Product
-{
+{ // src/Entity/Product
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]

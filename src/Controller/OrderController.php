@@ -10,16 +10,18 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
 
 #[Route('/commande')]
 #[IsGranted('ROLE_USER')]
 class OrderController extends AbstractController
 {
     #[Route('/confirmer', name: 'app_order_confirm')]
-    public function confirm(EntityManagerInterface $em): Response
+    public function confirm(EntityManagerInterface $em, MailerInterface $mailer): Response
     {
+         /** @var \App\Entity\User $user */ 
         $user = $this->getUser();
-
         // Récupérer le panier
         $cart = $em->getRepository(Cart::class)->findOneBy(['user' => $user]);
 
@@ -61,11 +63,27 @@ class OrderController extends AbstractController
 
         $em->flush();
 
+        // ✅ AJOUT : Envoi de l'email de confirmation
+        $email = (new Email())
+            ->from('noreply@phoneshop.com')
+            ->to($user->getEmail())
+            ->subject('Confirmation de votre commande #' . $order->getId() . ' - PhoneShop')
+            ->html('
+                <h1>Merci pour votre commande !</h1>
+                <p>Bonjour <strong>' . $user->getEmail() . '</strong>,</p>
+                <p>Votre commande <strong>#' . $order->getId() . '</strong> a bien été enregistrée.</p>
+                <p>Montant total : <strong>' . number_format($total, 2) . ' €</strong></p>
+                <p>Statut : En attente</p>
+                <br>
+                <p>Merci de votre confiance,<br>L\'équipe PhoneShop</p>
+            ');
+
+        $mailer->send($email);
+
         $this->addFlash('success', 'Commande passée avec succès !');
 
         return $this->redirectToRoute('app_order_success', ['id' => $order->getId()]);
     }
-
     #[Route('/succes/{id}', name: 'app_order_success')]
     public function success(int $id, EntityManagerInterface $em): Response
     {
@@ -75,7 +93,6 @@ class OrderController extends AbstractController
             'order' => $order,
         ]);
     }
-
     #[Route('/mes-commandes', name: 'app_order_list')]
     public function list(EntityManagerInterface $em): Response
     {
@@ -84,7 +101,6 @@ class OrderController extends AbstractController
             ['user' => $user],
             ['createdAt' => 'DESC']
         );
-
         return $this->render('order/list.html.twig', [
             'orders' => $orders,
         ]);
