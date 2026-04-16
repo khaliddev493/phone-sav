@@ -1,5 +1,8 @@
 {
-    "build": {
-        "builder" : "NIXPACKS"
-    }
+  "build": {
+    "builder": "NIXPACKS"
+  },
+  "deploy": {
+    "startCommand": "php bin/console doctrine:migrations:migrate --no-interaction && php-fpm & nginx -c /assets/nginx.conf"
+  }
 }
