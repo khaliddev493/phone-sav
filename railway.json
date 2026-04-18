@@ -1,8 +1,8 @@
 {
-  "build": {
-    "builder": "NIXPACKS"
-  },
-  "deploy": {
-    "startCommand": "php bin/console doctrine:migrations:migrate --no-interaction && php-fpm & nginx -c /assets/nginx.conf"
-  }
+    "$schema": "https://railway.app/railway-schema.json",
+    "deploy": {
+        "startCommand": "bash start.sh",
+        "healthcheckPath": "/",
+        "restartPolicyType": "ON_FAILURE"
+    }
 }
